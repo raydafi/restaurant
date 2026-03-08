@@ -468,58 +468,62 @@
       color: var(--text-muted); margin-top: 4px;
     }
 
-    /* ===== RESERVATION ===== */
-    #reservation {
+    /* ===== CONTACT RESERVATION BANNER ===== */
+    .contact-reserve {
       background: var(--dark-mid);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 100px; align-items: start;
+      border: 1px solid rgba(201,168,76,.18);
+      padding: 48px 52px;
+      margin-bottom: 0;
+      display: flex; flex-direction: column; gap: 10px;
     }
-    .reservation-info p {
-      font-size: 1.15rem; color: var(--text-light); line-height: 1.8; margin-top: 18px;
+    .contact-reserve-eyebrow {
+      font-family: 'Raleway', sans-serif; font-size: .68rem;
+      letter-spacing: 5px; text-transform: uppercase; color: var(--gold);
     }
-    .reservation-hours {
-      margin-top: 44px; padding-top: 40px;
-      border-top: 1px solid rgba(201,168,76,.15);
+    .contact-reserve-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; font-weight: 600; color: var(--white); line-height: 1.2;
+    }
+    .contact-reserve-title em { font-style: italic; color: var(--gold); }
+    .contact-reserve-desc {
+      font-size: 1.05rem; color: var(--text-light); line-height: 1.75; margin-top: 4px;
+    }
+    .contact-reserve-phone {
+      display: inline-flex; align-items: center; gap: 16px;
+      margin-top: 22px; text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; font-style: italic; color: var(--gold);
+      transition: color .3s;
+    }
+    .contact-reserve-phone:hover { color: var(--gold-light); }
+    .contact-reserve-phone-icon {
+      width: 50px; height: 50px; border: 1px solid rgba(201,168,76,.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+      transition: background .3s, border-color .3s;
+    }
+    .contact-reserve-phone:hover .contact-reserve-phone-icon {
+      background: rgba(201,168,76,.1); border-color: var(--gold);
+    }
+    .contact-reserve-note {
+      font-family: 'Raleway', sans-serif; font-size: .7rem;
+      letter-spacing: 2px; color: var(--text-muted); margin-top: 8px;
+    }
+    .contact-reserve-hours {
+      margin-top: 28px; padding-top: 28px;
+      border-top: 1px solid rgba(201,168,76,.12);
     }
     .hours-title {
       font-family: 'Raleway', sans-serif; font-size: .7rem; letter-spacing: 5px;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
     }
     .hours-row {
       display: flex; justify-content: space-between;
-      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.04);
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04);
       font-size: 1rem; color: var(--text-light);
     }
     .hours-row .day { font-weight: 400; }
     .hours-row .time { color: var(--cream); font-style: italic; }
-    .reservation-form { padding-top: 10px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group.full { grid-column: 1 / -1; }
-    .form-label {
-      font-family: 'Raleway', sans-serif; font-size: .65rem;
-      letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
-    }
-    .form-input, .form-select, .form-textarea {
-      background: rgba(255,255,255,.04); border: 1px solid rgba(201,168,76,.18);
-      color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1rem;
-      padding: 14px 18px; outline: none;
-      transition: border-color .3s, background .3s;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      border-color: var(--gold); background: rgba(201,168,76,.05);
-    }
-    .form-select option { background: var(--dark-mid); }
-    .form-textarea { resize: vertical; min-height: 100px; }
-    .form-submit {
-      margin-top: 28px; width: 100%;
-      font-family: 'Raleway', sans-serif; font-size: .78rem;
-      font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--dark); background: var(--gold); border: none;
-      padding: 18px; cursor: none; transition: background .3s, transform .2s;
-    }
-    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .form-note { font-size: .85rem; color: var(--text-muted); margin-top: 14px; text-align: center; }
 
     /* ===== CONTACT & MAP ===== */
     #contact { padding-top: 80px; padding-bottom: 80px; }
@@ -696,9 +700,6 @@
   <div class="cursor-dot" id="cursor-dot"></div>
 </div>
 
-<!-- NOTIFICATION -->
-<div class="notif" id="notif">✦ Votre demande de réservation a bien été envoyée</div>
-
 <!-- ===== NAV ===== -->
 <nav id="nav">
   <a href="#hero" class="nav-logo">Maison <span>Dorée</span></a>
@@ -709,7 +710,7 @@
     <li><a href="#chef">Le Chef</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-reserve" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Réserver</button>
+  <button class="nav-reserve" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Réserver</button>
   <button class="nav-burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -721,7 +722,7 @@
   <a href="#menu" onclick="closeMobile()">Menu</a>
   <a href="#gallery" onclick="closeMobile()">Galerie</a>
   <a href="#chef" onclick="closeMobile()">Le Chef</a>
-  <a href="#reservation" onclick="closeMobile()">Réserver</a>
+  <a href="#contact" onclick="closeMobile()">Réserver</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
 </div>
 
@@ -743,7 +744,7 @@
     </h1>
     <p class="hero-desc">Une expérience culinaire d'exception, façonnée par la passion et le respect des plus beaux produits de saison.</p>
     <div class="hero-ctas">
-      <a href="#reservation" class="btn-gold">Réserver une table</a>
+      <a href="#contact" class="btn-gold">Réserver une table</a>
       <a href="#menu" class="btn-outline">Découvrir le menu</a>
     </div>
   </div>
@@ -1082,86 +1083,6 @@
   </div>
 </section>
 
-<!-- ===== RESERVATION ===== -->
-<section id="reservation">
-  <div class="reservation-info reveal-left">
-    <div class="section-tag">Réservation</div>
-    <h2 class="section-title">Réservez <em>votre table</em></h2>
-    <div class="divider"></div>
-    <p>Nous vous recommandons de réserver au minimum <strong>deux semaines à l'avance</strong>, particulièrement pour les week-ends et les jours fériés.</p>
-    <p>Pour les groupes de plus de 8 personnes ou pour les événements privés, merci de nous contacter directement par téléphone.</p>
-    <div class="reservation-hours">
-      <div class="hours-title">Horaires d'ouverture</div>
-      <div class="hours-row"><span class="day">Mardi — Vendredi</span><span class="time">12h00 — 14h30 · 19h00 — 22h30</span></div>
-      <div class="hours-row"><span class="day">Samedi</span><span class="time">19h00 — 23h00</span></div>
-      <div class="hours-row"><span class="day">Dimanche</span><span class="time">12h00 — 15h00</span></div>
-      <div class="hours-row"><span class="day">Lundi</span><span class="time">Fermé</span></div>
-    </div>
-  </div>
-  <div class="reservation-form reveal-right">
-    <div class="form-grid">
-      <div class="form-group">
-        <label class="form-label" for="prenom">Prénom</label>
-        <input class="form-input" id="prenom" type="text" placeholder="Antoine" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="nom">Nom</label>
-        <input class="form-input" id="nom" type="text" placeholder="Leconte" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-input" id="email" type="email" placeholder="exemple@mail.fr" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="tel">Téléphone</label>
-        <input class="form-input" id="tel" type="tel" placeholder="+33 6 00 00 00 00" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="date">Date souhaitée</label>
-        <input class="form-input" id="date" type="date" />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="heure">Service</label>
-        <select class="form-select" id="heure">
-          <option value="">Choisir un service</option>
-          <option>Déjeuner — 12h00</option>
-          <option>Dîner — 19h00</option>
-          <option>Dîner — 20h30</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="couverts">Nombre de couverts</label>
-        <select class="form-select" id="couverts">
-          <option>1 personne</option>
-          <option selected>2 personnes</option>
-          <option>3 personnes</option>
-          <option>4 personnes</option>
-          <option>5 personnes</option>
-          <option>6 personnes</option>
-          <option>7 personnes</option>
-          <option>8 personnes</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="occasion">Occasion</label>
-        <select class="form-select" id="occasion">
-          <option>— Sélectionner —</option>
-          <option>Anniversaire</option>
-          <option>Romantique</option>
-          <option>Déjeuner d'affaires</option>
-          <option>Autre</option>
-        </select>
-      </div>
-      <div class="form-group full">
-        <label class="form-label" for="notes">Remarques ou allergies</label>
-        <textarea class="form-textarea" id="notes" placeholder="Allergie, régime alimentaire, disposition de table…"></textarea>
-      </div>
-    </div>
-    <button class="form-submit" id="submitReservation">Envoyer ma demande de réservation</button>
-    <p class="form-note">Confirmation par e-mail sous 24h · Annulation gratuite jusqu'à 48h avant</p>
-  </div>
-</section>
-
 <!-- ===== CONTACT ===== -->
 <section id="contact">
   <div class="contact-grid">
@@ -1188,7 +1109,7 @@
           <div class="contact-item-icon">✉</div>
           <div>
             <span class="contact-item-label">Email</span>
-            <div class="contact-item-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe9d91908a9f9d8abe939f978d91909a918c9b9bd0988c">[email&#160;protected]</a></div>
+            <div class="contact-item-value">contact@maisondoree.fr</div>
           </div>
         </div>
         <div class="contact-item">
@@ -1200,12 +1121,34 @@
         </div>
       </div>
     </div>
-    <div class="reveal-right">
+    <div class="reveal-right" style="display:flex; flex-direction:column; gap:20px;">
+
+      <!-- RÉSERVATION PAR TÉLÉPHONE -->
+      <div class="contact-reserve">
+        <div class="contact-reserve-eyebrow">Réservation</div>
+        <div class="contact-reserve-title">Réservez <em>votre table</em></div>
+        <p class="contact-reserve-desc">Pour toute réservation, nous vous invitons à nous contacter directement par téléphone. Notre équipe se fera un plaisir de vous accueillir et de trouver le créneau idéal pour vous.</p>
+        <a href="tel:+33142600000" class="contact-reserve-phone">
+          <div class="contact-reserve-phone-icon">📞</div>
+          +33 (0)1 42 60 00 00
+        </a>
+        <div class="contact-reserve-note">Lundi — Dimanche · 10h00 à 22h00</div>
+        <div class="contact-reserve-hours">
+          <div class="hours-title">Horaires du restaurant</div>
+          <div class="hours-row"><span class="day">Mardi — Vendredi</span><span class="time">12h–14h30 · 19h–22h30</span></div>
+          <div class="hours-row"><span class="day">Samedi</span><span class="time">19h00 — 23h00</span></div>
+          <div class="hours-row"><span class="day">Dimanche</span><span class="time">12h00 — 15h00</span></div>
+          <div class="hours-row"><span class="day">Lundi</span><span class="time">Fermé</span></div>
+        </div>
+      </div>
+
+      <!-- CARTE -->
       <div class="map-placeholder">
         <div class="map-pin">📍</div>
         <div class="map-label">Carte interactive</div>
         <div class="map-address">Intégrez ici votre Google Maps ou carte personnalisée</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1230,7 +1173,7 @@
         <li><a href="#menu">La Carte</a></li>
         <li><a href="#gallery">Galerie</a></li>
         <li><a href="#chef">Le Chef</a></li>
-        <li><a href="#reservation">Réservation</a></li>
+        <li><a href="#contact">Réservation</a></li>
       </ul>
     </div>
     <div>
@@ -1261,7 +1204,7 @@
 </footer>
 
 <!-- ===== JAVASCRIPT ===== -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CURSOR ──
   const cursor = document.getElementById('cursor');
   const dot = document.getElementById('cursor-dot');
@@ -1283,8 +1226,20 @@
   // ── BURGER ──
   const burger = document.getElementById('burger');
   const mobileNav = document.getElementById('mobileNav');
-  burger.addEventListener('click', () => mobileNav.classList.toggle('open'));
-  function closeMobile() { mobileNav.classList.remove('open'); }
+  burger.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.contains('open');
+    if (!isOpen) {
+      mobileNav.style.display = 'flex';
+      requestAnimationFrame(() => mobileNav.classList.add('open'));
+    } else {
+      mobileNav.classList.remove('open');
+      setTimeout(() => { mobileNav.style.display = 'none'; }, 360);
+    }
+  });
+  function closeMobile() {
+    mobileNav.classList.remove('open');
+    setTimeout(() => { mobileNav.style.display = 'none'; }, 360);
+  }
 
   // ── MENU TABS ──
   document.querySelectorAll('.menu-tab').forEach(btn => {
@@ -1307,29 +1262,6 @@
     });
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
-
-  // ── RESERVATION SUBMIT ──
-  document.getElementById('submitReservation').addEventListener('click', () => {
-    const prenom = document.getElementById('prenom').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const date = document.getElementById('date').value;
-    if (!prenom || !email || !date) {
-      const btn = document.getElementById('submitReservation');
-      btn.style.background = '#8B2020';
-      btn.textContent = 'Veuillez remplir les champs obligatoires';
-      setTimeout(() => { btn.style.background = ''; btn.textContent = 'Envoyer ma demande de réservation'; }, 2500);
-      return;
-    }
-    const notif = document.getElementById('notif');
-    notif.classList.add('show');
-    setTimeout(() => notif.classList.remove('show'), 4000);
-    document.getElementById('prenom').value = '';
-    document.getElementById('nom').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('tel').value = '';
-    document.getElementById('date').value = '';
-    document.getElementById('notes').value = '';
-  });
 
   // ── SMOOTH ANCHOR LINKS ──
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1358,7 +1290,9 @@
     });
   }
   const statsObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { animateCounters(); statsObserver.disconnect(); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCounters(); statsObserver.disconnect(); }
+    });
   }, { threshold: 0.5 });
   const statsEl = document.querySelector('.about-stats');
   if (statsEl) statsObserver.observe(statsEl);
